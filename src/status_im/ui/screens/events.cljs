@@ -17,6 +17,7 @@
             status-im.ui.screens.qr-scanner.events
             status-im.ui.screens.wallet.events
             status-im.ui.screens.wallet.send.events
+            status-im.ui.screens.wallet.transactions.events
             status-im.ui.screens.wallet.choose-recipient.events
             [re-frame.core :refer [dispatch reg-fx reg-cofx] :as re-frame]
             [status-im.native-module.core :as status]
