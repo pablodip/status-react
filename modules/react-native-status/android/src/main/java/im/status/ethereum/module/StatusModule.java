@@ -463,7 +463,7 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
         thread.start();
     }
 
-    // JSCJail
+    // Jail
 
     @ReactMethod
     public void initJail(final String js, final Callback callback) {

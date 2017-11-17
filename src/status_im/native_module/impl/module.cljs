@@ -56,11 +56,15 @@
   (when status
     (call-module
       (fn []
-        (let [init-js (str js-res/status-js "I18n.locale = '" rn-dependencies/i18n.locale "'; ")
-              init-js' (if config/jsc-enabled?
-                         (str init-js js-res/web3)
-                         init-js)]
-          (.initJail status init-js' #(log/debug "jail initialized")))))))
+        (let [init-js     (str js-res/status-js "I18n.locale = '" rn-dependencies/i18n.locale "'; ")
+              init-js'    (if config/jsc-enabled?
+                            (str init-js js-res/web3)
+                            init-js)
+              log-message (str (if config/jsc-enabled?
+                                 "JavaScriptCore"
+                                 "OttoVM")
+                               " jail initialized")]
+          (.initJail status init-js' #(log/debug log-message)))))))
 
 (defonce listener-initialized (atom false))
 

@@ -13,9 +13,6 @@
                   path:(NSString *)path
                 params:(NSString *)params;
 
-- (NSDictionary *)evalueteScript:(NSString *)js
-                          inCell:(NSString *)chatId;
-
 - (void)reset;
 
 @property (nonatomic) NSMutableDictionary * cells;

@@ -19,6 +19,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 class JSCJail implements Jail {
+    private static final String TAG = "JSCJail";
     private String initJs;
     private Map<String, Cell> cells = new HashMap<>();
     private StatusModule module;
@@ -124,7 +125,7 @@ class JSCJail implements Jail {
                     signal.put("type", "jail.signal");
                     signal.put("event", event);
                 } catch (JSONException e) {
-
+                    Log.d(TAG, "Failed to construct signal JSON object: " + e.getMessage());
                 }
 
                 module.signalEvent(signal.toString());
@@ -161,11 +162,11 @@ class JSCJail implements Jail {
         context.property("statusLog", statusLog);
     }
 
-    private JSException jsexception;
+    private JSException jsException;
 
     private void checkException(String label) {
-        if (jsexception != null) {
-            jsexception = null;
+        if (jsException != null) {
+            jsException = null;
         }
     }
 
@@ -179,7 +180,7 @@ class JSCJail implements Jail {
         context.setExceptionHandler(new JSContext.IJSExceptionHandler() {
             @Override
             public void handle(JSException exception) {
-                jsexception = exception;
+                jsException = exception;
             }
         });
         String web3Js = "var statusSignals = {\n" +
@@ -227,12 +228,12 @@ class JSCJail implements Jail {
         JSONObject result = new JSONObject();
         try {
             result.put("result", catalog.toString());
-            if (jsexception != null) {
-                result.put("error", jsexception.toString());
-                jsexception = null;
+            if (jsException != null) {
+                result.put("error", jsException.toString());
+                jsException = null;
             }
         } catch (JSONException e) {
-            //e.printStackTrace();
+            Log.d(TAG, "Failed to construct JSON response for parseJail: " + e.getMessage());
         }
 
         return result.toString();
@@ -250,11 +251,11 @@ class JSCJail implements Jail {
         JSONObject result = new JSONObject();
         try {
             result.put("result", callResult.toString());
-            if (jsexception != null) {
-                result.put("error", jsexception.toString());
+            if (jsException != null) {
+                result.put("error", jsException.toString());
             }
         } catch (JSONException e) {
-            //e.printStackTrace();
+            Log.d(TAG, "Failed to construct JSON response for callJail: " + e.getMessage());
         }
 
         return result.toString();

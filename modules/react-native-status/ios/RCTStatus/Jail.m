@@ -43,7 +43,7 @@
     [Status jailEvent:_chatId data:[data toString]];
 }
 
-- (void)setCahtId:(NSString *)chatId
+- (void)setChatId:(NSString *)chatId
 {
     _chatId = chatId;
 }
@@ -60,14 +60,12 @@
 
 @implementation Jail
 
-- (void)initJail:(NSString *)js
-{
+- (void)initJail:(NSString *)js {
     _initialJs = js;
 }
 
 - (NSDictionary *)parseJail:(NSString *)chatId
-                   withCode:(NSString *)js
-{
+                   withCode:(NSString *)js {
     Cell *cell = [self createCell:chatId withCode:js];
     JSContext *context = cell.context;
     [_cells setValue:cell forKey:chatId];
@@ -86,8 +84,7 @@
 
 - (NSDictionary *)call:(NSString *)chatId
                   path:(NSString *)path
-                params:(NSString *)params
-{
+                params:(NSString *)params {
     Cell *cell = [_cells valueForKey:chatId];
     JSContext *context = cell.context;
     if(cell == nil) {
@@ -106,8 +103,7 @@
 }
 
 - (Cell *)createCell:(NSString *)chatId
-                 withCode:(NSString *)js
-{
+                 withCode:(NSString *)js {
     if(_cells == nil) {
         _cells = [NSMutableDictionary dictionaryWithCapacity:1];
     }
@@ -117,7 +113,7 @@
     cell.context = context;
     
     HandlersJs *handlers = [HandlersJs new];
-    [handlers setCahtId:chatId];
+    [handlers setChatId:chatId];
     [handlers addToContext:context];
     
     [self addTimer:cell];
@@ -194,34 +190,14 @@
     return cell;
 }
 
-- (NSDictionary *)evalueteScript:(NSString *)js
-                          inCell:(NSString *)chatId
-{
-    Cell *cell = [_cells valueForKey:chatId];
-    JSContext *context = cell.context;
-    JSValue *val = [context evaluateScript:js];
-    
-    JSValue *exception = [context exception];
-    NSString *error;
-    if(exception != nil) {
-        error = [exception toString];
-        [context setException:nil];
-    }
-    NSDictionary *result = [[NSDictionary alloc] initWithObjectsAndKeys:[val toString], @"result", error, @"error", nil];
-    
-    return result;
-}
-
-- (void)addTimer:(Cell *)cell
-{
+- (void)addTimer:(Cell *)cell {
     TimerJS *timer = [TimerJS new];
     cell.timer = timer;
     
     [timer addToContext:cell.context];
 }
 
--(void)reset
-{
+-(void)reset {
     NSArray *keys = [_cells allKeys];
     for (NSString *key in keys) {
         Cell *cell = [_cells valueForKey:key];

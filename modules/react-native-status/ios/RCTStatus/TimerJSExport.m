@@ -2,15 +2,13 @@
 
 @implementation TimerJS
 
-- (NSString *)setTimeout:(JSValue *)args
-{
+- (NSString *)setTimeout:(JSValue *)args {
     JSValue *callback = [args callWithArguments:@[@0]];
     double ms = [[args callWithArguments:@[@1]] toDouble];
     return [self createTimer:callback inteval:ms repeats:NO];
 }
 
-- (void)clearInterval:(NSString *)id
-{
+- (void)clearInterval:(NSString *)id {
     NSTimer *timer = [_timers objectForKey:id];
     if(timer != nil) {
         [timer invalidate];
@@ -18,8 +16,7 @@
 }
 
 
-- (NSString *)setInterval:(JSValue *)args
-{
+- (NSString *)setInterval:(JSValue *)args {
     JSValue *callback = [args callWithArguments:@[@0]];
     double ms = [[args callWithArguments:@[@1]] toDouble];
     return [self createTimer:callback inteval:ms repeats:YES];
@@ -27,8 +24,7 @@
 
 - (NSString *)createTimer:(JSValue *)callback
                   inteval:(double)ms
-                  repeats:(BOOL)repeats
-{
+                  repeats:(BOOL)repeats {
     if (_timers == nil) {
         _timers = [NSMutableDictionary dictionaryWithCapacity:1];
     }
@@ -47,13 +43,11 @@
     return uuid;
 }
 
-- (void)addToContext:(JSContext *)context
-{
+- (void)addToContext:(JSContext *)context {
     [context setObject:self forKeyedSubscript:@"jsTimer"];
 }
 
-- (void)stopTimers
-{
+- (void)stopTimers {
     NSArray *keys = [_timers allKeys];
     for (NSString *key in keys) {
         NSTimer *timer = [_timers valueForKey:key];
