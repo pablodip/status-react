@@ -257,11 +257,9 @@
                   [:load-contacts]
                   [:load-contact-groups]
                   [:init-chat]
-                  [:init-discoveries]
                   [:initialize-debugging {:address address}]
                   [:send-account-update-if-needed]
-                  [:start-requesting-discoveries]
-                  [:remove-old-discoveries!]
+                  [:init-discoveries]
                   [:update-wallet]
                   [:update-transactions]
                   [:get-fcm-token]]}))
