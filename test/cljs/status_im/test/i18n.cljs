@@ -16,5 +16,12 @@
            (apply str))))
 
 (deftest supported-locales-are-actually-supported
-  (is (s/valid? ::i18n/supported-locales (i18n/actual-supported-locales))
-      (s/explain-str ::i18n/supported-locales (i18n/actual-supported-locales))))
+  (is (set/subset? i18n/supported-locales (i18n/actual-supported-locales))
+      (->> i18n/supported-locales
+           (remove i18n/locale-is-supported-based-on-translations?)
+           (map (fn [l]
+                  (str "Missing translations in supported locale " l "\n"
+                       (set/difference (i18n/checkpoint->trans-ids i18n/checkpoint-to-consider-locale-supported)
+                                       (i18n/locale->trans-ids l))
+                       "\n\n")))
+           (apply str))))

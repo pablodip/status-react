@@ -150,6 +150,9 @@
 
 (def checkpoint-to-consider-locale-supported ::checkpoint|1)
 
+(defn checkpoint->trans-ids [checkpoint]
+  (get checkpoints-def checkpoint))
+
 (defn checkpoint-val-to-compare [c]
   (-> c name (str/replace #"^.*\|" "") int))
 
@@ -185,13 +188,14 @@
               [locale (locale->checkpoint locale)]))
        (into {})))
 
+(defn locale-is-supported-based-on-translations? [locale]
+  (let [c (locale->checkpoint locale)]
+    (and c (or (= c checkpoint-to-consider-locale-supported)
+               (>checkpoints checkpoint-to-consider-locale-supported c)))))
+
 (defn actual-supported-locales []
-  (->> (locales-with-checkpoint)
-       (filter val)
-       (filter (fn [[l c]]
-                 (or (= c checkpoint-to-consider-locale-supported)
-                     (>checkpoints checkpoint-to-consider-locale-supported c))))
-       keys
+  (->> locales
+       (filter locale-is-supported-based-on-translations?)
        set))
 
 (defn locales-with-full-support []
