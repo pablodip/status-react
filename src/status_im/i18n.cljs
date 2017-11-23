@@ -59,7 +59,7 @@
 (set! (.-fallbacks rn-dependencies/i18n) true)
 (set! (.-defaultSeparator rn-dependencies/i18n) "/")
 
-;; translations
+;;;; translations
 
 (def translations-by-locale {:af          af/translations
                              :ar          ar/translations
@@ -123,7 +123,7 @@
                              :zh-wuu      zh-wuu/translations
                              :zh-yue      zh-yue/translations})
 
-; english as source of truth
+;; english as source of truth
 (def trans-ids (set (keys en/translations)))
 
 (s/def ::trans-id trans-ids)
@@ -134,7 +134,7 @@
        (mapcat #(-> % val keys))
        set))
 
-;; checkpoints
+;;;; checkpoints
 
 (s/def ::checkpoint.id keyword?)
 (s/def ::checkpoint-defs (s/map-of ::checkpoint.id ::trans-ids))
@@ -159,7 +159,7 @@
 (defn >checkpoints [& cs]
   (apply > (map checkpoint-val-to-compare cs)))
 
-;; locales
+;;;; locales
 
 (def locales (set (keys translations-by-locale)))
 

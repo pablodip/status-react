@@ -12,7 +12,9 @@
       (->> i18n/locales
            (remove #(s/valid? ::i18n/trans-ids (i18n/locale->trans-ids %)))
            (map (fn [l]
-                  (str "Extra translation ids in locale " l "\n" (set/difference (i18n/locale->trans-ids l) i18n/trans-ids) "\n\n")))
+                  (str "Extra translation ids in locale " l "\n"
+                       (set/difference (i18n/locale->trans-ids l) i18n/trans-ids)
+                       "\n\n")))
            (apply str))))
 
 (deftest supported-locales-are-actually-supported
