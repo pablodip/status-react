@@ -7,7 +7,7 @@
 (deftest label-options
   (is (not (nil? (:key (i18n/label-options {:key nil}))))))
 
-(deftest english-has-all-translation-ids
+(deftest locales-only-have-existing-tran-ids
   (is (s/valid? ::i18n/trans-ids (i18n/trans-ids-for-all-locales))
       (->> i18n/locales
            (remove #(s/valid? ::i18n/trans-ids (i18n/locale->trans-ids %)))
