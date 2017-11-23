@@ -1,6 +1,6 @@
 (ns status-im.i18n
   (:require
-    [cljs.spec.alpha :as s]
+    [cljs.spec.alpha :as spec]
     [status-im.react-native.js-dependencies :as rn-dependencies]
     [status-im.translations.af :as af]
     [status-im.translations.ar :as ar]
@@ -59,7 +59,7 @@
 (set! (.-fallbacks rn-dependencies/i18n) true)
 (set! (.-defaultSeparator rn-dependencies/i18n) "/")
 
-;;;; translations
+;; translations
 
 (def translations-by-locale {:af          af/translations
                              :ar          ar/translations
@@ -126,27 +126,27 @@
 ;; english as source of truth
 (def trans-ids (set (keys en/translations)))
 
-(s/def ::trans-id trans-ids)
-(s/def ::trans-ids (s/coll-of ::trans-id :kind set? :into #{}))
+(spec/def ::trans-id trans-ids)
+(spec/def ::trans-ids (spec/coll-of ::trans-id :kind set? :into #{}))
 
 (defn trans-ids-for-all-locales []
   (->> translations-by-locale
        (mapcat #(-> % val keys))
        set))
 
-;;;; checkpoints
+;; checkpoints
 
-(s/def ::checkpoint.id keyword?)
-(s/def ::checkpoint-defs (s/map-of ::checkpoint.id ::trans-ids))
+(spec/def ::checkpoint.id keyword?)
+(spec/def ::checkpoint-defs (spec/map-of ::checkpoint.id ::trans-ids))
 
 (def checkpoint-1-trans-ids trans-ids)
 ; these could be status versions instead of incremental numbers
-(def checkpoints-def (s/assert ::checkpoint-defs
-                               {::checkpoint|1 checkpoint-1-trans-ids
+(def checkpoints-def (spec/assert ::checkpoint-defs
+                                  {::checkpoint|1 checkpoint-1-trans-ids
                                 ::checkpoint|2 (into checkpoint-1-trans-ids #{})}))
 (def checkpoints (set (keys checkpoints-def)))
 
-(s/def ::checkpoint checkpoints)
+(spec/def ::checkpoint checkpoints)
 
 (def checkpoint-to-consider-locale-supported ::checkpoint|1)
 
@@ -159,27 +159,27 @@
 (defn >checkpoints [& cs]
   (apply > (map checkpoint-val-to-compare cs)))
 
-;;;; locales
+;; locales
 
 (def locales (set (keys translations-by-locale)))
 
-(s/def ::locale locales)
-(s/def ::locales (s/coll-of ::locale :kind set? :into #{}))
+(spec/def ::locale locales)
+(spec/def ::locales (spec/coll-of ::locale :kind set? :into #{}))
 
-(def supported-locales (s/assert ::locales #{:en :es}))
+(def supported-locales (spec/assert ::locales #{:en :es}))
 
-(s/def ::supported-locale supported-locales)
-(s/def ::supported-locales (s/coll-of ::supported-locale :kind set? :into #{}))
+(spec/def ::supported-locale supported-locales)
+(spec/def ::supported-locales (spec/coll-of ::supported-locale :kind set? :into #{}))
 
 (defn locale->trans-ids [locale]
   (-> translations-by-locale (get locale) keys set))
 
 (defn locale->checkpoint [locale]
   (let [locale-trans-ids (locale->trans-ids locale)
-        checkpoint (->> checkpoints-def
-                        (filter (fn [[checkpoint checkpoint-trans-ids]]
-                                  (set/subset? locale-trans-ids checkpoint-trans-ids)))
-                        ffirst)]
+        checkpoint       (->> checkpoints-def
+                              (filter (fn [[checkpoint checkpoint-trans-ids]]
+                                        (set/subset? locale-trans-ids checkpoint-trans-ids)))
+                              ffirst)]
     checkpoint))
 
 (defn locales-with-checkpoint []
@@ -216,7 +216,7 @@
 (def delimeters
   "This function is a hack: mobile Safari doesn't support toLocaleString(), so we need to pass
   this map to WKWebView to make number formatting work."
-  (let [n (.toLocaleString (js/Number 1000.1))
+  (let [n          (.toLocaleString (js/Number 1000.1))
         delimiter? (= (count n) 7)]
     (if delimiter?
       {:delimiter (subs n 1 2)
