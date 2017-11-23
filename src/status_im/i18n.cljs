@@ -53,7 +53,7 @@
     [status-im.translations.zh-yue :as zh-yue]
     [status-im.utils.js-resources :refer [default-contacts]]
     [taoensso.timbre :as log]
-    [clojure.string :as str]
+    [clojure.string :as string]
     [clojure.set :as set]))
 
 (set! (.-fallbacks rn-dependencies/i18n) true)
@@ -154,7 +154,7 @@
   (get checkpoints-def checkpoint))
 
 (defn checkpoint-val-to-compare [c]
-  (-> c name (str/replace #"^.*\|" "") int))
+  (-> c name (string/replace #"^.*\|" "") int))
 
 (defn >checkpoints [& cs]
   (apply > (map checkpoint-val-to-compare cs)))
@@ -228,7 +228,7 @@
   (when number
     (let [{:keys [delimiter separator]} delimeters]
       (.toNumber rn-dependencies/i18n
-                 (str/replace number #"," ".")
+                 (string/replace number #"," ".")
                  (clj->js {:precision                 10
                            :strip_insignificant_zeros true
                            :delimiter                 delimiter
