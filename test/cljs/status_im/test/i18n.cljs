@@ -8,12 +8,12 @@
   (is (not (nil? (:key (i18n/label-options {:key nil}))))))
 
 (deftest locales-only-have-existing-tran-ids
-  (is (spec/valid? ::i18n/trans-ids (i18n/trans-ids-for-all-locales))
+  (is (spec/valid? ::i18n/labels (i18n/labels-for-all-locales))
       (->> i18n/locales
-           (remove #(spec/valid? ::i18n/trans-ids (i18n/locale->trans-ids %)))
+           (remove #(spec/valid? ::i18n/labels (i18n/locale->labels %)))
            (map (fn [l]
-                  (str "Extra translation ids in locale " l "\n"
-                       (set/difference (i18n/locale->trans-ids l) i18n/trans-ids)
+                  (str "Extra translations in locale " l "\n"
+                       (set/difference (i18n/locale->labels l) i18n/labels)
                        "\n\n")))
            (apply str))))
 
@@ -23,7 +23,7 @@
            (remove i18n/locale-is-supported-based-on-translations?)
            (map (fn [l]
                   (str "Missing translations in supported locale " l "\n"
-                       (set/difference (i18n/checkpoint->trans-ids i18n/checkpoint-to-consider-locale-supported)
-                                       (i18n/locale->trans-ids l))
+                       (set/difference (i18n/checkpoint->labels i18n/checkpoint-to-consider-locale-supported)
+                                       (i18n/locale->labels l))
                        "\n\n")))
            (apply str))))

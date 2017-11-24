@@ -124,33 +124,51 @@
                              :zh-yue      zh-yue/translations})
 
 ;; english as source of truth
-(def trans-ids (set (keys en/translations)))
+(def labels (set (keys en/translations)))
 
-(spec/def ::trans-id trans-ids)
-(spec/def ::trans-ids (spec/coll-of ::trans-id :kind set? :into #{}))
+(spec/def ::label labels)
+(spec/def ::labels (spec/coll-of ::label :kind set? :into #{}))
 
-(defn trans-ids-for-all-locales []
+(defn labels-for-all-locales []
   (->> translations-by-locale
        (mapcat #(-> % val keys))
        set))
 
 ;; checkpoints
 
-(spec/def ::checkpoint.id keyword?)
-(spec/def ::checkpoint-defs (spec/map-of ::checkpoint.id ::trans-ids))
+;; Checkpoints specify milestones for locales.
+;;
+;; With milestones we can ensure that expected supported languages
+;; are actually supported, and visualize the translation state for
+;; the rest of locales according to these milestones.
+;;
+;; Checkpoints are defined by indicating the labels that need to be present
+;; in a locale to achieve that checkpoint.
+;;
+;; We need to define the checkpoint that needs to be achieved for
+;; a locale to be considered supported. This is why as we develop
+;; we add translations, so we need to be defining a new target
+;; for supported languages to achieve.
+;;
+;; Checkpoints are only used in dev and test. In dev when we want to
+;; manually check the state of checkpoints for locales, and in test
+;; to automatically check supported locales against the target checkpoint.
 
-(def checkpoint-1-trans-ids trans-ids)
-; these could be status versions instead of incremental numbers
+(spec/def ::checkpoint.id keyword?)
+(spec/def ::checkpoint-defs (spec/map-of ::checkpoint.id ::labels))
+
+(def checkpoint-1-labels labels)
+;; these could be status versions instead of incremental numbers
 (def checkpoints-def (spec/assert ::checkpoint-defs
-                                  {::checkpoint|1 checkpoint-1-trans-ids
-                                ::checkpoint|2 (into checkpoint-1-trans-ids #{})}))
+                                  {::checkpoint-1 checkpoint-1-labels
+                                   ::checkpoint-2 (into checkpoint-1-labels #{})}))
 (def checkpoints (set (keys checkpoints-def)))
 
 (spec/def ::checkpoint checkpoints)
 
-(def checkpoint-to-consider-locale-supported ::checkpoint|1)
+(def checkpoint-to-consider-locale-supported ::checkpoint-1)
 
-(defn checkpoint->trans-ids [checkpoint]
+(defn checkpoint->labels [checkpoint]
   (get checkpoints-def checkpoint))
 
 (defn checkpoint-val-to-compare [c]
@@ -171,15 +189,15 @@
 (spec/def ::supported-locale supported-locales)
 (spec/def ::supported-locales (spec/coll-of ::supported-locale :kind set? :into #{}))
 
-(defn locale->trans-ids [locale]
+(defn locale->labels [locale]
   (-> translations-by-locale (get locale) keys set))
 
 (defn locale->checkpoint [locale]
-  (let [locale-trans-ids (locale->trans-ids locale)
-        checkpoint       (->> checkpoints-def
-                              (filter (fn [[checkpoint checkpoint-trans-ids]]
-                                        (set/subset? locale-trans-ids checkpoint-trans-ids)))
-                              ffirst)]
+  (let [locale-labels (locale->labels locale)
+        checkpoint    (->> checkpoints-def
+                           (filter (fn [[checkpoint checkpoint-labels]]
+                                     (set/subset? locale-labels checkpoint-labels)))
+                           ffirst)]
     checkpoint))
 
 (defn locales-with-checkpoint []
@@ -200,8 +218,8 @@
 
 (defn locales-with-full-support []
   (->> locales
-       (filter (fn [l]
-                 (set/subset? trans-ids (locale->trans-ids l))))
+       (filter (fn [locale]
+                 (set/subset? labels (locale->labels locale))))
        set))
 
 (defn supported-locales-that-are-not-considered-supported []
