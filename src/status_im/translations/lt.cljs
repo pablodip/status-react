@@ -26,11 +26,7 @@
    :photos-access-error                   "Norėdami suteikti reikalingą fotoaparato leidimą, eikite į savo sistemos nustatymus ir įsitikinkite, kad pasirinktas Status > Camera."
 
    ;;drawer
-   :invite-friends                        "Pakviesti draugus"
-   :faq                                   "DUK"
    :switch-users                          "Pasikeisti naudotoją"
-   :feedback                              "Turite atsiliepimą?\nPakratykite telefoną!"
-   :view-all                              "Rodyti viską"
    :current-network                       "Dabartinis tinklas"
 
    ;;chat
@@ -76,7 +72,6 @@
                                            :other "valandos"}
    :datetime-day                          {:one   "diena"
                                            :other "dienos"}
-   :datetime-multiple                     "s"
    :datetime-ago                          "prieš"
    :datetime-yesterday                    "vakar"
    :datetime-today                        "šiandien"
@@ -84,13 +79,10 @@
    ;;profile
    :profile                               "Profilis"
    :edit-profile                          "Redaguoti profilį"
-   :report-user                           "Pranešti apie vartotoją"
    :message                               "Žinutė"
-   :username                              "Prisijungimo vardas"
    :not-specified                         "Nenurodyta"
    :public-key                            "Viešas raktas"
    :phone-number                          "Telefono numeris"
-   :email                                 "El. paštas"
    :update-status                         "Atsinaujinkite būseną..."
    :add-a-status                          "Pridėkite būseną..."
    :status-prompt                         "Sukurkite būseną, kad žmonės žinotų, ką jūs siūlote. Taip pat galite naudoti #hashtagus."
@@ -99,17 +91,11 @@
    :remove-from-contacts                  "Ištrinti iš kontaktų"
    :start-conversation                    "Pradėti pokalbį"
    :send-transaction                      "Siųsti transakciją"
-   :share-qr                              "Dalintis QR"
-   :error-incorrect-name                  "Pasirinkite kita vardą"
-   :error-incorrect-email                 "Neteisingas el. paštas"
-   :profile-testnet-icon                  "Testnet"
-   :profile-testnet-text                  "Tik Testnet. Nesiųskite ETH arba SNT į savo adresą"
 
    ;;make_photo
    :image-source-title                    "Profilio atvaizdai"
    :image-source-make-photo               "Fotografuoti"
    :image-source-gallery                  "Pasirinkti iš galerijos"
-   :image-source-cancel                   "Atšaukti"
 
    ;;sharing
    :sharing-copy-to-clipboard             "Kopijuoti į iškarpinę"
@@ -117,7 +103,6 @@
    :sharing-cancel                        "Atšaukti"
 
    :browsing-title                        "Naršyti"
-   :browsing-browse                       "@naršyti"
    :browsing-open-in-web-browser          "Atverti naršyklėje"
    :browsing-cancel                       "Naršyti"
 
@@ -125,11 +110,9 @@
    :contacts-syncronized                  "Jūsų kontaktai buvo sinchronizuoti"
    :confirmation-code                     (str "Dėkui! Mes išsiuntėme jums teksto pranešimą su patvirtinimo kodu. Prašau nurodyti kodą, kad patvirtintumėte savo telefono numerį")
    :incorrect-code                        (str "Atsiprašome, kodas neteisingas, prašome įvesti dar kartą")
-   :generate-passphrase                   (str "Aš sukursiu slaptažodį, kad galėtumėte atkurti savo prieigą arba prisijungti iš kito įrenginio")
    :phew-here-is-your-passphrase          "* Vajė *, buvo sunkoka, čia yra jūsų slaptažodis, * išsaugokite jį! * jeigu reikės atkurti jūsų paskyrą."
    :here-is-your-passphrase               "Čia yra jūsų slaptažodis, * išsaugokite jį! * jeigu reikės atkurti jūsų paskyrą."
    :here-is-your-signing-phrase           "Čia yra jūsų pasirašymo frazė. Ją naudosite, kad patvirtintumėte savo sandorius. * Užsirašykite ir saugokite!"
-   :written-down                          "Įsitikinkite, kad saugiai jį pasirašėte"
    :phone-number-required                 "Palieskite čia, jei norite įvesti savo telefono numerį, tam kad rasti jūsų draugus"
    :shake-your-phone                      "Radote klaidą arba turite pasiūlymų? Tiesiog ~pakratykite~ savo telefoną!"
    :intro-status                          "Naudokitės šiuo pokalbiu, kad nustatytumėte savo paskyrą ir pakeistumėte savo nustatymus!"
@@ -146,7 +129,6 @@
 
    ;;chats
    :chats                                 "Pokalbiai"
-   :new-chat                              "Naujas pokalbis"
    :delete-chat                           "Trinti pokalbį"
    :new-group-chat                        "Naujas grupinis pokalbis"
    :new-public-group-chat                 "Jungtis prie grupinio pokalbio"
@@ -185,9 +167,6 @@
    :remove-from-group                     "Pašalinti iš grupės"
    :edit-contacts                         "Redaguoti kontaktus"
    :search-contacts                       "Ieškoti kontaktų"
-   :show-all                              "RODYTI VISKĄ"
-   :contacts-group-dapps                  "ÐApp'ai"
-   :contacts-group-people                 "Asmenys"
    :contacts-group-new-chat               "Pradėti naują pokalbį"
    :choose-from-contacts                  "Pasirinkti iš kontaktų"
    :no-contacts                           "Jokių kontaktų nerasta"
@@ -199,34 +178,15 @@
    :remove                                "Pašalinti"
    :save                                  "issaugoti"
    :delete                                "Ištrinti"
-   :change-color                          "Keisti spalvą"
    :clear-history                         "Naikinti istoriją"
    :mute-notifications                    "Nutildyti pranešimus"
    :leave-chat                            "Palikti pokalbį"
-   :delete-and-leave                      "Trinti ir išeiti"
    :chat-settings                         "Pokalbio nustatymai"
    :edit                                  "Redaguoti"
    :add-members                           "Pridėti narių"
-   :blue                                  "Mėlyna"
-   :purple                                "Purpurinis"
-   :green                                 "Žalia"
-   :red                                   "Rudona"
 
    ;;commands
-   :money-command-description             "Siūsti pinigų"
-   :location-command-description          "Siūsti koordinates"
-   :phone-command-description             "Siūsti telefono numerį"
-   :phone-request-text                    "Telefono numerio užklausa"
-   :confirmation-code-command-description "Siūsti patvirtinimo kodą"
-   :confirmation-code-request-text        "Konfiguravimo kodo užklausa"
-   :send-command-description              "Siūsti komandą"
-   :request-command-description           "Siūsti užklausą"
-   :keypair-password-command-description  "Raktinės komandos aprašymas..."
-   :help-command-description              "Pagalba"
-   :request                               "Užklausa"
    :chat-send-eth                         "{{amount}} ETH"
-   :chat-send-eth-to                      "{{amount}} ETH siūsti {{chat-name}}"
-   :chat-send-eth-from                    "{{amount}} ETH nuo {{chat-name}}"
 
    ;;location command
    :your-current-location                 "Jūsų dabartinė vieta"
@@ -239,23 +199,16 @@
    :sharing-copy-to-clipboard-coordinates "Kopijuoti koordinates"
 
    ;;new-group
-   :group-chat-name                       "Pokalbio vardas"
-   :empty-group-chat-name                 "Pasirinkite vardą"
-   :illegal-group-chat-name               "Pasirinkite kitą vardą"
    :new-group                             "nauja grupė"
    :reorder-groups                        "Rušiuoti grupes"
-   :group-name                            "Grupės vardas"
    :edit-group                            "Redaguoti grupę"
    :delete-group                          "Trinti grupę"
    :delete-group-confirmation             "Ši grupė bus pašalinta is jūsų grupių sarašo. Jūsų kontaktai nepakis."
    :delete-group-prompt                   "Tai neįtakos jūsų kontaktų"
-   :group-members                         "Grupės nariai"
    :contact-s                             {:one   "kontactas"
                                            :other "kontactai"}
 
    ;;participants
-   :add-participants                      "Pridėti dalyvių"
-   :remove-participants                   "Pašalinti dalyvių"
 
    ;;protocol
    :received-invitation                   "Gautas pakvietimas į pokalbį"
@@ -267,13 +220,9 @@
 
    ;;new-contact
    :add-new-contact                       "Pridėti naują kontaktą"
-   :import-qr                             "Importuoti"
    :scan-qr                               "Skanuoti QR"
-   :swow-qr                               "Rodyti QR"
    :name                                  "Vardas"
-   :whisper-identity                      "Whisper Tapatybė"
    :address-explication                   "Gal čia turėtų būti tekstas, kuriame būtų paaiškinta, kas yra adresas ir kur jo ieškoti"
-   :enter-valid-address                   "Įveskite teisingą adresą arba skanuokite QR kodą"
    :enter-valid-public-key                "Įveskite teisyngą viešąjį raktą arba skanuokite QR kodą"
    :contact-already-added                 "Šis kontaktas jau pridėtas"
    :can-not-add-yourself                  "Negalima savęs pridėti"
@@ -283,24 +232,18 @@
    :connect                               "Jungtis"
    :address                               "Adresas"
    :password                              "Slaptažodis"
-   :login                                 "Prisijungimas"
    :sign-in-to-status                     "Jungtis į Status"
    :sign-in                               "Prisijungti"
    :wrong-password                        "Neteisingas slaptažodis"
    :enter-password                        "Įveskite slatažodį"
 
    ;;recover
-   :recover-from-passphrase               "Atkurti iš slaptažodžio"
-   :recover-explain                       "Norėdami susigrąžinti prieigą, įveskite slaptažodžio slaptafrazę"
    :passphrase                            "Slaptažodis"
    :recover                               "Atkurti"
-   :enter-valid-passphrase                "Įveskite slaptažodį"
-   :enter-valid-password                  "Įvestike slaptažodį"
    :twelve-words-in-correct-order         "12 žodžių teisinga tvarka"
 
    ;;accounts
    :recover-access                        "Atkurti prieigą"
-   :add-account                           "Pridėti paskyrą"
    :create-new-account                    "Sukurti naują paskyrą"
 
    ;;wallet-qr-code
@@ -309,35 +252,17 @@
    ;;validation
    :invalid-phone                         "Neteisingas telefono numeris"
    :amount                                "Paskyra"
-   :not-enough-eth                        (str "Nepakankamas ETH balansas "
-                                               "({{balance}} ETH)")
 
    ;;transactions
    :confirm                               "Patvirtinti"
-   :confirm-transactions                  {:one   "Patvirtinti transakciją"
-                                           :other "Patvirtinti {{count}} transakciją"
-                                           :zero  "Jokios transakcijos"}
-   :transactions-confirmed                {:one   "Transakcija patvirtinta"
-                                           :other "{{count}} transakcijos patvirtintos"
-                                           :zero  "Jokios transakcijos nepatvirtintos"}
    :transaction                           "Transakcija"
-   :unsigned-transactions                 "Kepasirašytos transakcijos"
-   :no-unsigned-transactions              "Jokių nepasirašytų transakcijų"
    :unsigned-transaction-expired          "Nepasirašyta transakcija baigėsi"
-   :enter-password-transactions           {:one   "Patvirtinkite transakciją slaptažodžiu"
-                                           :other "Patvirtinkite transakcijas slaptažodžiu"}
    :status                                "Status"
-   :pending-confirmation                  "Laukiama patvirtinimo"
    :recipient                             "Gavėjas"
-   :one-more-item                         "Dar viena daikta"
-   :fee                                   "Mokestis"
-   :estimated-fee                         "numatomas mokestis"
-   :value                                 "Vertė"
    :to                                    "Į"
    :from                                  "Iš"
    :data                                  "Duomenys"
    :got-it                                "Gavo"
-   :contract-creation                     "Contrakto kūrimas"
    :block                                 "Blokas"
    :hash                                  "Hash"
    :gas-limit                             "Gas limitas"
@@ -372,7 +297,6 @@
    :wallet-settings                       "Piniginės nustatymai"
    :signing-phrase-description            "Pasirašykite sandorį įvesdami savo slaptažodį. Įsitikinkite, kad aukščiau esantys žodžiai atitinka jūsų slaptą pasirašymo frazę"
    :wallet-insufficient-funds             "Nepakankamos lėšos"
-   :request-transaction                   "Reikalauti transakcijos"
    :send-request                          "Siūsti užklausą"
    :share                                 "Dalintis"
    :eth                                   "ETH"
@@ -384,8 +308,6 @@
    :transactions-sign-all                 "Pasirašyti viska"
    :transactions-sign-transaction         "Pasirašyti transakciją"
    :transactions-sign-later               "Pasirašyti"
-   :transactions-sign-all-text            "Pasirašykite sandorį įvesdami savo slaptažodį.\nĮsitikinkite, kad aukščiau esantys žodžiai atitinka jūsų slaptą pasirašymo frazę"
-   :transactions-sign-input-placeholder   "Įveskite slaptažodį"
    :transactions-delete                   "Trinti transakciją"
    :transactions-delete-content           "Transakcija bus pašalinta iš nepasirašyto sarašo"
    :transactions-history                  "Istorija"
@@ -406,15 +328,11 @@
    :not-applicable                        "Netaikoma nepasirašytoms transakcijoms"
 
    ;; Wallet Send
-   :wallet-send-transaction               "Siūsti Transakciją"
-   :wallet-send-step                      "Žingsnis {{step}} iš {{number}}"
    :wallet-choose-recipient               "Pasirinkti gavėją"
    :wallet-choose-from-contacts           "Pasirinkti iš kontaktų"
    :wallet-address-from-clipboard         "Įklijuoti adresą"
    :wallet-invalid-address                "Neteisingas adresas: \n {{data}}"
    :wallet-browse-photos                  "Naršyti žinutes"
-   :validation-amount-invalid             "Kiekis netinkamas"
-   :validation-amount-invalid-number      "Kiekio skaičius netinkamas"
    :validation-amount-is-too-precise      "Suma yra per daug tiksli. Mažiausias vienetas, kurį galite siųsti, yra 1 Wei (1x10^-18 ETH)"
 
 
@@ -428,7 +346,6 @@
    :paste-json-as-text                    "Įklijuoti JSON kaip tekstą"
    :paste-json                            "Įklijuoti JSON"
    :specify-rpc-url                       "Nurodykite RPC URL"
-   :edit-rpc-url                          "Redaguoti RPC URL"
    :edit-network-config                   "Redaguoti tinklo nustatymus"
    :connected                             "Jungtis"
    :process-json                          "Apdoroti JSON"
